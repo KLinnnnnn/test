@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资源库</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2c2c2c;
+            color: white;
+        }
+        header {
+            background-color: #4CAF50;
+            text-align: center;
+            padding: 1em;
+            font-size: 2em;
+        }
+        main {
+            padding: 2em;
+        }
+        .module {
+            background-color: #2c2c2c;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 2cm;
+            padding: 1em;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .module:last-child {
+            margin-bottom: 0;
+        }
+        .module h2 {
+            text-align: center;
+            margin-bottom: 1em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #888;
+            padding: 0.5em;
+        }
+        th:nth-child(1), td:nth-child(1) {
+            width: 14.28%;
+        }
+        th:nth-child(2), td:nth-child(2) {
+            width: 14.28%;
+        }
+        th:nth-child(3), td:nth-child(3) {
+            width: 57.14%;
+        }
+        th:nth-child(4), td:nth-child(4) {
+            width: 14.28%;
+        }
+        th {
+            background-color: #3c3c3c;
+        }
+        tr:nth-child(odd) {
+            background-color: #333;
+        }
+        a {
+            color: #888;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        nav {
+            background-color: #4CAF50;
+            display: flex;
+            justify-content: space-around;
+            padding: 1em;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .subnav {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            padding: 1em;
+            margin-top: 1em;
+            z-index: 1;
+        }
+        .subnav a {
+            display: block;
+            padding: 0.5em 1em;
+            color: white;
+            text-decoration: none;
+        }
+        .subnav a:hover {
+            background-color: #4CAF50;
+        }
+        nav a:hover + .subnav,
+        .subnav:hover {
+            display: block;
+        }
+    </style>
+    <script>
+        function showExample(exampleId) {
+            const exampleFileName = 'example' + exampleId + '.txt';
+            const exampleWindow = window.open("", "example", "width=800,height=600");
+
+            fetch(exampleFileName)
+                .then(response => response.text())
+                .then(exampleCode => {
+                    exampleWindow.document.write('<style>body {background-color: #333; color: #fff;}</style><pre>' + exampleCode + '</pre>');
+                })
+                .catch(error => {
+                    console.error('Error fetching example code:', error);
+                });
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            function showContent(sectionId) {
+                const sections = ['products', 'competitions', 'lessons']; // 在此处添加其他部分的id
+                for (const id of sections) {
+                    document.getElementById(id).style.display = (id === sectionId) ? 'block' : 'none';
+                }
+            }
+
+            const navButtons = document.querySelectorAll("[data-section]");
+            navButtons.forEach((button) => {
+                button.addEventListener("click", function () {
+                    const sectionId = button.getAttribute("data-section");
+                    showContent(sectionId);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>资源库</header>
+    <nav>
+        <button type="button" data-section="products">产品库</button>
+        <div class="subnav">
+            <a href="#big-models">大模型产品库</a>
+            <!-- 在此处添加其他子导航链接 -->
+        </div>
+        <button type="button" data-section="competitions">比赛库</button>
+        <div class="subnav">
+            <a href="#2023">2023年</a>
+            <!-- 在此处添加其他子导航链接 -->
+        </div>
+        <button type="button" data-section="lessons">学习库</button>
+        <button type="button" data-section="tools">工具库</button>
+        <button type="button">联系我们</button>
+    </nav>
+    <main>
+        <div class="product-all" id="products">
+            <h1>产品库</h1>
+            <div class="module" >
+                <h2>大模型产品库</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">类别</th>
+                            <th align="left">名称</th>
+                            <th align="left">描述</th>
+                            <th align="left">链接</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">综合</td>
+                            <td align="left">ChatGPT</td>
+                            <td align="left">OpenAI 开发的大型 AI 产品</td>
+                            <td align="left"><a href="https://chat.openai.com/chat">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">综合</td>
+                            <td align="left">Claude</td>
+                            <td align="left">下一代 AI 助手，应对各种规模任务</td>
+                            <td align="left"><a href="https://www.anthropic.com/product">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">综合</td>
+                            <td align="left">ChatGLM</td>
+                            <td align="left">开源双语对话语言模型</td>
+                            <td align="left">
+                                <a href="https://models.aminer.cn/">官网</a>
+                                <a href="https://github.com/THUDM/ChatGLM-6B">Github</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">综合</td>
+                            <td align="left">文心一言</td>
+                            <td align="left">百度公司开发的大型 AI 产品</td>
+                            <td align="left"><a href="https://yiyan.baidu.com/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">综合</td>
+                            <td align="left">通义千问</td>
+                            <td align="left">阿里公司开发的大型 AI 产品</td>
+                            <td align="left"><a href="https://tongyi.aliyun.com/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">综合</td>
+                            <td align="left">ChatPDF</td>
+                            <td align="left">一个与 PDF 对话的网站</td>
+                            <td align="left"><a href="https://www.chatpdf.com/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">综合</td>
+                            <td align="left">ChatGPT 学术优化</td>
+                            <td align="left">专为科研工作设计的 ChatGPT 扩展</td>
+                            <td align="left"><a href="https://github.com/binary-husky/chatgpt_academic">Github</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">综合</td>
+                            <td align="left">HuggingGPT</td>
+                            <td align="left">HuggingGPT: Solving AI Tasks with ChatGPT and its Friends in HuggingFace</td>
+                            <td align="left">
+                                <a href="https://github.com/microsoft/JARVIS">Github</a>
+                                <a href="https://arxiv.org/abs/2303.17580">paper</a>
+                            </td>
+                        </tr>
+                        <!-- ... -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="module">
+                <h2>微调大模型</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">类别</th>
+                            <th align="left">资源名（Name）</th>
+                            <th align="left">描述（Description）</th>
+                            <th align="left">链接</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">大模型微调方法</td>
+                            <td align="left">Lora</td>
+                            <td align="left">Low-Rank Adaptation of Large Language Models</td>
+                            <td align="left">
+                                <a href="">Web</a>
+                                <a href="https://github.com/microsoft/LoRA">Github</a>
+                                <a href="https://arxiv.org/abs/2106.09685">Paper</a>
+                                <a href="">Colab</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">大模型微调方法</td>
+                            <td align="left">Prefix-Tuning</td>
+                            <td align="left">Dynamic Prefix-Tuning for Generative Template-based Event Extraction</td>
+                            <td align="left">
+                                <a href="">Web</a>
+                                <a href="https://arxiv.org/abs/2205.06166">Github</a>
+                                <a href="https://github.com/XiangLi1999/PrefixTuning">Paper</a>
+                                <a href="">Colab</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">大模型微调方法</td>
+                            <td align="left">P-Tuning</td>
+                            <td align="left">Prompt Tuning Can Be Comparable to Fine-tuning Across Scales and Tasks</td>
+                            <td align="left">
+                                <a href="">Web</a>
+                                <a href="https://github.com/THUDM/P-tuning">Github</a>
+                                <a href="https://aclanthology.org/2022.acl-short.8/">Paper</a>
+                                <a href="">Colab</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">大模型微调方法</td>
+                            <td align="left">P-Tuning v2</td>
+                            <td align="left">Prompt Tuning Can Be Comparable to Fine-tuning Universally Across Scales and Tasks</td>
+                            <td align="left">
+                                <a href="">Web</a>
+                                <a href="https://arxiv.org/abs/2110.07602">Github</a>
+                                <a href="https://github.com/XiangLi1999/PrefixTuning">Paper</a>
+                                <a href="">Colab</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="module">
+                <h2>代码生成模型</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">类别</th>
+                            <th align="left">名称</th>
+                            <th align="left">描述</th>
+                            <th align="left">链接</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">代码生成模型</td>
+                            <td align="left">Copilot</td>
+                            <td align="left">Your AI pair programmer</td>
+                            <td align="left">
+                                <a href="https://github.com/features/copilot/">web</a>
+                                <a href="https://github.com/github/copilot-docs">Github</a>
+                                <a href="">paper</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">代码生成模型</td>
+                            <td align="left">CodeGeeX</td>
+                            <td align="left">CodeGeeX: A Pre-Trained Model for Code Generation with Multilingual Evaluations on HumanEval-X</td>
+                            <td align="left">
+                                <a href="https://codegeex.cn/zh-CN">web</a>
+                                <a href="https://github.com/THUDM/CodeGeeX">Github</a>
+                                <a href="https://arxiv.org/abs/2303.17568">paper</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">代码生成模型</td>
+                            <td align="left">CodeGen</td>
+                            <td align="left">CodeGen: An Open Large Language Model for Code with Multi-Turn Program Synthesis</td>
+                            <td align="left">
+                                <a href="https://cloud.codegen.cc/">web</a>
+                                <a href="https://github.com/salesforce/CodeGen">Github</a>
+                                <a href="https://arxiv.org/abs/2203.13474">paper</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">代码生成模型</td>
+                            <td align="left">InCoder</td>
+                            <td align="left">InCoder: A Generative Model for Code Infilling and Synthesis</td>
+                            <td align="left">
+                                <a href="https://sites.google.com/view/incoder-code-models">web</a>
+                                <a href="https://github.com/dpfried/incoder">Github</a>
+                                <a href="https://arxiv.org/abs/2204.05999">paper</a>
+                            </td>
+                        </tr>
+                        <!-- ... -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="module">
+                <h2>语音转文字</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">类别</th>
+                            <th align="left">名称</th>
+                            <th align="left">描述</th>
+                            <th align="left">链接</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">语音转文字</td>
+                            <td align="left">Google 语音识别 API</td>
+                            <td align="left">【收费】Google Speech-to-Text API支持实时语音转文字、长时间的录音文件识别，以及多种语音编码格式。它可以在各种情境下，如电话、视频、语音助手等方面识别多达120种语言和方言。</td>
+                            <td align="left">
+                                <a href="https://cloud.google.com/speech-to-text">官网</a>
+                                <a href="javascript:showExample(1);">示例</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">语音转文字</td>
+                            <td align="left">腾讯云语音识别 API</td>
+                            <td align="left">【收费】腾讯云语音识别API支持60种语言和多种语音编码格式。它可以实时转换语音为文字，并适用于电话、视频、语音助手等场景。</td>
+                            <td align="left">
+                                <a href="https://www.tencentcloud.com/zh/products/asr">官网</a>
+                                <a href="javascript:showExample(2);">示例</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">语音转文字</td>
+                            <td align="left">百度语音识别 API</td>
+                            <td align="left">【收费】百度语音识别API支持实时语音识别、长时间的录音文件识别，以及多种语音编码格式。它支持普通话、粤语、四川话等多种方言，适用于电话、视频、语音助手等场景。</td>
+                            <td align="left">
+                                <a href="https://cloud.tencent.com/product/asr">官网</a>
+                                <a href="javascript:showExample(3);">示例</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">语音转文字</td>
+                            <td align="left">iFLYTEK 语音识别 API</td>
+                            <td align="left">【收费】iFLYTEK 是科大讯飞推出的一款语音识别服务。它支持多种语言，包括中文。在中文语音识别领域，iFLYTEK 的表现尤为出色。</td>
+                            <td align="left">
+                                <a href="https://www.xfyun.cn/services/voicedictation">官网</a>
+                                <a href="">示例</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">语音转文字</td>
+                            <td align="left">CMU Sphinx 语音识别</td>
+                            <td align="left">CMU Sphinx 是一个免费、开源的语音识别系统，由卡内基梅隆大学开发。它支持多种语言，包括中文。</td>
+                            <td align="left">
+                                <a href="https://cmusphinx.github.io/">官网</a>
+                                <a href="https://github.com/cmusphinx">GitHub</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">语音转文字</td>
+                            <td align="left">Mozilla DeepSpeech 语音识别</td>
+                            <td align="left">Mozilla DeepSpeech 是一个免费、开源的基于深度学习的语音识别系统。DeepSpeech支持多种语言，包括中文。</td>
+                            <td align="left">
+                                <a href="https://www.mozilla.org/en-US/firefox/voice/">官网</a>
+                                <a href="https://github.com/mozilla/DeepSpeech">GitHub</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">语音转文字</td>
+                            <td align="left">Vosk-API 语音识别</td>
+                            <td align="left">Vosk 是一个离线的开源语音识别系统，基于Kaldi ASR。它支持许多语言，包括中文，并且可以在不同平台上运行，如Linux、Windows、macOS、Android和iOS。</td>
+                            <td align="left">
+                                <a href="https://alphacephei.com/vosk/">官网</a>
+                                <a href="https://github.com/alphacep/vosk-api">GitHub</a>
+                            </td>
+                        </tr>
+                        <!-- ... -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="module">
+                <h2>分词、词性标注、依存句法分析</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">类别</th>
+                            <th align="left">资源名（Name）</th>
+                            <th align="left">描述（Description）</th>
+                            <th align="left">链接</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">分词</td>
+                            <td align="left">Jieba（结巴）中文分词</td>
+                            <td align="left">结巴分词是一个非常流行的中文分词工具，提供基于前缀词典实现高效的词图扫描，生成句子中汉字所有可能成词情况所构成的有向无环图（DAG），并采用动态规划查找最大概率路径，找出基于词频的最大切分组合。</td>
+                            <td align="left">
+                                <a href="">WEB</a>
+                                <a href="https://github.com/fxsjy/jieba">Github</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">分词、词性标注、依存句法分析</td>
+                            <td align="left">SnowNLP</td>
+                            <td align="left">SnowNLP是一个Python写的中文自然语言处理库，可以方便地处理中文文本内容，提供了中文分词、词性标注、情感分析等功能。</td>
+                            <td align="left">
+                                <a href="">WEB</a>
+                                <a href="https://github.com/isnowfy/snownlp">Github</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">分词、词性标注、依存句法分析</td>
+                            <td align="left">THULAC</td>
+                            <td align="left">清华大学自然语言处理与社会人文计算实验室研制的一套中文词法分析工具包，具有中文分词和词性标注功能。</td>
+                            <td align="left">
+                                <a href="http://thulac.thunlp.org/">WEB</a>
+                                <a href="https://github.com/thunlp/THULAC-Python">Github</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">分词、词性标注、依存句法分析</td>
+                            <td align="left">LTP</td>
+                            <td align="left">由哈尔滨工业大学社会计算与信息检索研究中心开发的一套中文自然语言处理系统，提供了中文分词、词性标注、命名实体识别等功能。</td>
+                            <td align="left">
+                                <a href="http://ltp.ai/">WEB</a>
+                                <a href="https://github.com/HIT-SCIR/ltp">Github</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">分词、词性标注、依存句法分析</td>
+                            <td align="left">PKUSEG</td>
+                            <td align="left">北京大学的一款多领域中文分词工具，可以根据不同领域需求进行分词。</td>
+                            <td align="left">
+                                <a href="">WEB</a>
+                                <a href="https://github.com/lancopku/pkuseg-python">Github</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">分词、词性标注、依存句法分析</td>
+                            <td align="left">FudanNLP</td>
+                            <td align="left">复旦大学自然语言处理实验室的自然语言处理工具包，提供了分词、词性标注、命名实体识别、依存句法分析等功能。</td>
+                            <td align="left">
+                                <a href="">WEB</a>
+                                <a href="https://github.com/FudanNLP/fnlp">Github</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">分词、词性标注、依存句法分析</td>
+                            <td align="left">HanLP</td>
+                            <td align="left">HanLP是一款NLP工具包，提供了中文分词、词性标注、命名实体识别、短语提取、自动摘要等功能。</td>
+                            <td align="left">
+                                <a href="https://www.hanlp.com/">WEB</a>
+                                <a href="https://github.com/hankcs/HanLP">Github</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">分词、词性标注、依存句法分析</td>
+                            <td align="left">NLPIR</td>
+                            <td align="left">NLPIR是中国科学院计算技术研究所开发的一套自然语言处理工具包，提供了中文分词、词性标注、关键词提取、命名实体识别等功能。通过该工具，可以实现中文依存句法分析。</td>
+                            <td align="left">
+                                <a href="http://ictclas.nlpir.org/">WEB</a>
+                                <a href="https://github.com/NLPIR-team/NLPIR">Github</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">分词、词性标注、依存句法分析</td>
+                            <td align="left">StanfordNLP</td>
+                            <td align="left">StanfordNLP是斯坦福大学开发的一款自然语言处理工具包，提供了依存句法分析功能。该库是基于Java的Stanford CoreNLP的Python接口，可以处理多种语言，包括中文。</td>
+                            <td align="left">
+                                <a href="">WEB</a>
+                                <a href="https://github.com/stanfordnlp/stanfordnlp">Github</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">分词、词性标注、依存句法分析</td>
+                            <td align="left">SpaCy</td>
+                            <td align="left">SpaCy是一个强大的自然语言处理库，提供多种功能，包括依存句法分析。它包含多种预训练模型，可以直接用于中文依存句法分析。</td>
+                            <td align="left">
+                                <a href="https://spacy.io/">WEB</a>
+                                <a href="https://github.com/explosion/spaCy">Github</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="module">
+                <h2>机器翻译</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">类别</th>
+                            <th align="left">资源名（Name）</th>
+                            <th align="left">描述（Description）</th>
+                            <th align="left">链接</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 在此处添加100+条目，包括名称、语料介绍和链接 -->
+                        <tr>
+                            <td align="left"></td>
+                            <td align="left">WMT</td>
+                            <td align="left"></td>
+                            <td align="left">
+                                <a href="https://wmt-qe-task.github.io/">WEB</a>
+                                <a href="https://wmt-metrics-task.github.io/">WEB</a>
+                                <a href="https://github.com/WMT-QE-Task/wmt-qe-2022-data">Github</a>
+                            </td>
+                        </tr>
+                        <!-- ... -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="module">
+                <h2>语料库</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">类别</th>
+                            <th align="left">资源名（Name）</th>
+                            <th align="left">描述（Description）</th>
+                            <th align="left">链接</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 在此处添加100+条目，包括名称、语料介绍和链接 -->
+                        <tr>
+                            <td align="left"></td>
+                            <td align="left">人名语料库</td>
+                            <td align="left"></td>
+                            <td align="left"><a href="https://github.com/wainshine/Chinese-Names-Corpus">Github</a></td>
+                        </tr>
+                        <!-- ... -->
+                    </tbody>
+                </table>
+            </div>
+            <!-- 其他模块，如API库、云服务库、产品库，也可以使用相同的表格结构 -->
+        </div>
+        <div class="competition-all" id="competitions" style="display: none;">
+            <h1>比赛库</h1>
+            <div class="module">
+                <h2>2023</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">类别</th>
+                            <th align="left">资源名（Name）</th>
+                            <th align="left">描述（Description）</th>
+                            <th align="left">链接</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 在此处添加100+条目，包括名称、语料介绍和链接 -->
+                        <tr>
+                            <td align="left">比赛</td>
+                            <td align="left">CCL 2023</td>
+                            <td align="left">第二十二届中国计算语言学大会（CCL 2023）</td>
+                            <td align="left">
+                                <a href="http://cips-cl.org/static/CCL2023/index.html">web</a>
+                                <a href="http://cips-cl.org/static/CCL2023/cclEval/taskEvaluation/index.html">Competition</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">比赛社区</td>
+                            <td align="left">TIANCHI</td>
+                            <td align="left">阿里云天池大赛</td>
+                            <td align="left"><a href="https://tianchi.aliyun.com/competition/activeList">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">比赛社区</td>
+                            <td align="left">heywhale</td>
+                            <td align="left">和鲸社区数据竞赛</td>
+                            <td align="left"><a href="https://www.heywhale.com/home/competition">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">比赛社区</td>
+                            <td align="left">Datawhale</td>
+                            <td align="left">Datawhale开源社区竞赛</td>
+                            <td align="left"><a href="https://linklearner.com/#/competition">官网</a></td>
+                        </tr>
+                        <!-- ... -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="lesson-all" id="lessons" style="display: none;">
+            <h1>学习库</h1>
+            <div class="module">
+                <h2>学习库</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">类别</th>
+                            <th align="left">资源名（Name）</th>
+                            <th align="left">描述（Description）</th>
+                            <th align="left">链接</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 在此处添加100+条目，包括名称、语料介绍和链接 -->
+                        <tr>
+                            <td align="left"></td>
+                            <td align="left">动手学深度学习</td>
+                            <td align="left">面向中文读者的能运行、可讨论的深度学习教科书</td>
+                            <td align="left">
+                                <a href="https://zh.d2l.ai/">官网</a>
+                                <a href="https://github.com/ShusenTang/Dive-into-DL-PyTorch">Github</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left"></td>
+                            <td align="left">W3Cschool</td>
+                            <td align="left">一个编程学习网站</td>
+                            <td align="left"><a href="https://www.w3cschool.cn/html/dict.html">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left"></td>
+                            <td align="left">菜鸟编程</td>
+                            <td align="left">提供了编程的基础技术教程, 介绍了HTML、CSS、Javascript、Python,Java,Ruby,C,PHP,MySQL等各种编程语言的基础知识。</td>
+                            <td align="left"><a href="https://m.runoob.com/">官网</a></td>
+                        </tr>
+                        <!-- ... -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="module">
+                <h2>深度学习库</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">类别</th>
+                            <th align="left">资源名（Name）</th>
+                            <th align="left">描述（Description）</th>
+                            <th align="left">链接</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 在此处添加100+条目，包括名称、语料介绍和链接 -->
+                        <tr>
+                            <td align="left">深度学习框架</td>
+                            <td align="left">TensorFlow</td>
+                            <td align="left">TensorFlow官方文档。谷歌开源的机器学习框架，适用于深度学习。</td>
+                            <td align="left"><a href="https://www.tensorflow.org/guide">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">深度学习框架</td>
+                            <td align="left">PyTorch</td>
+                            <td align="left">PyTorch官方文档。开源的机器学习框架，适用于深度学习。</td>
+                            <td align="left"><a href="https://pytorch.org/docs/stable/index.html">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">深度学习框架</td>
+                            <td align="left">Keras</td>
+                            <td align="left">Keras官方文档。高级神经网络API，可用于快速构建深度学习模型。</td>
+                            <td align="left"><a href="https://keras.io/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">深度学习框架</td>
+                            <td align="left">Caffe</td>
+                            <td align="left">Caffe官方文档。用于计算机视觉的深度学习框架。</td>
+                            <td align="left"><a href="http://caffe.berkeleyvision.org/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">深度学习框架</td>
+                            <td align="left">PaddlePaddle</td>
+                            <td align="left">PaddlePaddle官方文档。百度的深度学习框架，支持多种任务。</td>
+                            <td align="left"><a href="https://www.paddlepaddle.org.cn/documentation/docs/en/2.0-rc1/index_en.html">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">深度学习框架</td>
+                            <td align="left">MXNet</td>
+                            <td align="left">MXNet官方文档。可扩展的深度学习框架，支持多种编程语言。</td>
+                            <td align="left"><a href="https://mxnet.apache.org/versions/1.8.0/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">深度学习框架</td>
+                            <td align="left">Chainer</td>
+                            <td align="left">Chainer官方文档。Python的深度学习框架，支持动态计算图。</td>
+                            <td align="left"><a href="https://docs.chainer.org/en/stable/">官网</a></td>
+                        </tr>
+                        <!-- ... -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="module">
+                <h2>自然语言处理库</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">类别</th>
+                            <th align="left">资源名（Name）</th>
+                            <th align="left">描述（Description）</th>
+                            <th align="left">链接</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">Python的自然语言处理库</td>
+                            <td align="left">NLTK</td>
+                            <td align="left">NLTK官方文档。Python的自然语言处理库，用于文本分析。</td>
+                            <td align="left"><a href="https://www.nltk.org/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Python的自然语言处理库</td>
+                            <td align="left">SpaCy</td>
+                            <td align="left">SpaCy官方文档。Python的自然语言处理库，用于高级自然语言处理任务，包括词性标注、句法解析和实体识别。</td>
+                            <td align="left"><a href="https://spacy.io/usage">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Python的自然语言处理库</td>
+                            <td align="left">Gensim</td>
+                            <td align="left">Gensim官方文档。Python的自然语言处理库，用于主题建模和文档相似度计算。</td>
+                            <td align="left"><a href="https://radimrehurek.com/gensim/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Python的自然语言处理库</td>
+                            <td align="left">StanfordNLP</td>
+                            <td align="left">StanfordNLP官方文档。Python的自然语言处理库，由斯坦福大学开发，用于词性标注、命名实体识别、依存句法解析等任务。</td>
+                            <td align="left"><a href="https://stanfordnlp.github.io/stanfordnlp/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Python的自然语言处理库</td>
+                            <td align="left">TextBlob</td>
+                            <td align="left">TextBlob官方文档。Python的自然语言处理库，用于简化文本处理任务，包括词性标注、名词短语提取、情感分析等。</td>
+                            <td align="left"><a href="https://textblob.readthedocs.io/en/dev/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Python的自然语言处理库</td>
+                            <td align="left">Pattern</td>
+                            <td align="left">Pattern官方文档。Python的自然语言处理库，用于词性标注、情感分析、数据挖掘等任务，包含一些预处理和可视化工具。</td>
+                            <td align="left"><a href="https://polyglot.readthedocs.io/en/latest/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Python的自然语言处理库</td>
+                            <td align="left">Flair</td>
+                            <td align="left">Flair官方文档。Python的自然语言处理库，用于词性标注、命名实体识别、情感分析等任务，支持预训练的语言模型和迁移学习。</td>
+                            <td align="left"><a href="https://github.com/flairNLP/flair">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Python的自然语言处理库</td>
+                            <td align="left">AllenNLP</td>
+                            <td align="left">AllenNLP官方文档。Python的自然语言处理库，由AI2开发，基于PyTorch构建，用于构建高级NLP模型，支持多种任务，如语义角色标注、核心引用解析等。</td>
+                            <td align="left"><a href="https://allenai.org/allennlp">官网</a></td>
+                        </tr>
+                        <!-- ... -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="module">
+                <h2>机器学习库</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">类别</th>
+                            <th align="left">资源名（Name）</th>
+                            <th align="left">描述（Description）</th>
+                            <th align="left">链接</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 在此处添加100+条目，包括名称、语料介绍和链接 -->
+                        <tr>
+                            <td align="left">机器学习库</td>
+                            <td align="left">Scikit-learn</td>
+                            <td align="left">Scikit-learn官方文档。Python的机器学习库，提供简单高效的工具。</td>
+                            <td align="left"><a href="https://scikit-learn.org/stable/user_guide.html">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">机器学习库</td>
+                            <td align="left">XGBoost</td>
+                            <td align="left">XGBoost官方文档。优化的梯度提升机器学习库，用于分类和回归。</td>
+                            <td align="left"><a href="https://xgboost.readthedocs.io/en/latest/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">机器学习库</td>
+                            <td align="left">LightGBM</td>
+                            <td align="left">LightGBM官方文档。高性能的梯度提升机器学习库，用于分类和回归。</td>
+                            <td align="left"><a href="https://lightgbm.readthedocs.io/en/latest/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">机器学习库</td>
+                            <td align="left">CatBoost</td>
+                            <td align="left">CatBoost官方文档。高性能的梯度提升机器学习库，用于分类和回归。</td>
+                            <td align="left"><a href="https://catboost.ai/docs/">官网</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="module">
+                <h2>数据分析和操作库</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">类别</th>
+                            <th align="left">资源名（Name）</th>
+                            <th align="left">描述（Description）</th>
+                            <th align="left">链接</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">数据分析和操作库</td>
+                            <td align="left">Pandas</td>
+                            <td align="left">Pandas官方文档。Python的数据分析和操作库，提供数据结构和工具。</td>
+                            <td align="left"><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/index.html">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">数值计算库</td>
+                            <td align="left">NumPy</td>
+                            <td align="left">NumPy官方文档。Python的数值计算库，提供多维数组和矩阵操作。</td>
+                            <td align="left"><a href="https://numpy.org/doc/stable/user/index.html">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Python的绘图库</td>
+                            <td align="left">Matplotlib</td>
+                            <td align="left">Matplotlib官方文档。Python的绘图库，用于创建静态、动态和交互式图表。</td>
+                            <td align="left"><a href="https://matplotlib.org/stable/contents.html">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Matplotlib的数据可视化库</td>
+                            <td align="left">Seaborn</td>
+                            <td align="left">Seaborn官方文档。基于Matplotlib的数据可视化库，提供美观的图表。</td>
+                            <td align="left"><a href="https://seaborn.pydata.org/tutorial.html">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">交互式编程环境</td>
+                            <td align="left">Jupyter</td>
+                            <td align="left">Jupyter官方文档。交互式编程环境，支持多种编程语言。</td>
+                            <td align="left"><a href="https://jupyter.org/documentation">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">并行计算库</td>
+                            <td align="left">Dask</td>
+                            <td align="left">Dask官方文档。并行计算库，可扩展Pandas、NumPy和Scikit-learn。</td>
+                            <td align="left"><a href="https://docs.dask.org/en/latest/">官网</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="module">
+                <h2>编程语言</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">类别</th>
+                            <th align="left">资源名（Name）</th>
+                            <th align="left">描述（Description）</th>
+                            <th align="left">链接</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 在此处添加100+条目，包括名称、语料介绍和链接 -->
+                        <tr>
+                            <td align="left">编程语言</td>
+                            <td align="left">Python</td>
+                            <td align="left">Python官方文档。通用编程语言，适用于Web开发、数据分析等领域。</td>
+                            <td align="left"><a href="https://docs.python.org/3/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编程语言</td>
+                            <td align="left">JavaScript</td>
+                            <td align="left">JavaScript官方文档。主要用于Web开发，是主流的前端编程语言。</td>
+                            <td align="left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编程语言</td>
+                            <td align="left">Java</td>
+                            <td align="left">Java官方文档。通用编程语言，常用于企业级应用、Android开发等领域。</td>
+                            <td align="left"><a href="https://docs.oracle.com/en/java/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编程语言</td>
+                            <td align="left">C++</td>
+                            <td align="left">C++官方文档。通用编程语言，适用于系统编程、游戏开发等领域。</td>
+                            <td align="left"><a href="https://en.cppreference.com/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编程语言</td>
+                            <td align="left">C</td>
+                            <td align="left">C官方文档。通用编程语言，广泛应用于操作系统和嵌入式系统开发。</td>
+                            <td align="left"><a href="https://www.gnu.org/software/libc/manual/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编程语言</td>
+                            <td align="left">Node.js</td>
+                            <td align="left">Node.js官方文档。JavaScript运行时环境，用于开发服务器端应用。</td>
+                            <td align="left"><a href="https://nodejs.org/en/docs/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编程语言</td>
+                            <td align="left">Ruby</td>
+                            <td align="left">Ruby官方文档。通用编程语言，适用于Web开发、脚本编写等领域。</td>
+                            <td align="left"><a href="https://www.ruby-lang.org/en/documentation/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编程语言</td>
+                            <td align="left">Rust</td>
+                            <td align="left">Rust官方文档。系统编程语言，注重性能和安全，适用于系统开发。</td>
+                            <td align="left"><a href="https://doc.rust-lang.org/book/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编程语言</td>
+                            <td align="left">Go</td>
+                            <td align="left">Go官方文档。通用编程语言，适用于后端开发、分布式系统等领域。</td>
+                            <td align="left"><a href="https://golang.org/doc/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编程语言</td>
+                            <td align="left">Swift</td>
+                            <td align="left">Swift官方文档。通用编程语言，主要用于苹果平台应用开发。</td>
+                            <td align="left"><a href="https://docs.swift.org/swift-book/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编程语言</td>
+                            <td align="left">Kotlin</td>
+                            <td align="left">Kotlin官方文档。通用编程语言，兼容Java，适用于Android开发。</td>
+                            <td align="left"><a href="https://kotlinlang.org/docs/reference/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编程语言</td>
+                            <td align="left">Scala</td>
+                            <td align="left">Scala官方文档。通用编程语言，兼容Java，适用于大数据处理。</td>
+                            <td align="left"><a href="https://docs.scala-lang.org/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编程语言</td>
+                            <td align="left">Haskell</td>
+                            <td align="left">Haskell官方文档。纯函数式编程语言，适用于学术研究和算法实现。</td>
+                            <td align="left"><a href="https://www.haskell.org/documentation/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编程语言</td>
+                            <td align="left">R</td>
+                            <td align="left">R官方文档。编程语言和软件环境，主要用于统计计算和数据可视化。</td>
+                            <td align="left"><a href="https://cran.r-project.org/manuals.html">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编程语言</td>
+                            <td align="left">Lua</td>
+                            <td align="left">Lua官方文档。轻量级脚本语言，广泛应用于游戏开发和嵌入式系统。</td>
+                            <td align="left"><a href="https://www.lua.org/docs.html">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编程语言</td>
+                            <td align="left">PHP</td>
+                            <td align="left">PHP官方文档。通用编程语言，主要用于服务器端Web开发。</td>
+                            <td align="left"><a href="https://www.php.net/docs.php">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编程语言</td>
+                            <td align="left">Julia</td>
+                            <td align="left">Julia官方文档。通用编程语言，适用于科学计算和数据处理。</td>
+                            <td align="left"><a href="https://docs.julialang.org/en/v1/">官网</a></td>
+                        </tr>
+                        <!-- ... -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="module">
+                <h2>数据库</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">类别</th>
+                            <th align="left">资源名（Name）</th>
+                            <th align="left">描述（Description）</th>
+                            <th align="left">链接</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 在此处添加100+条目，包括名称、语料介绍和链接 -->
+                        <tr>
+                            <td align="left">数据库</td>
+                            <td align="left">MySQL</td>
+                            <td align="left">MySQL官方文档。流行的开源关系型数据库管理系统，支持SQL。</td>
+                            <td align="left"><a href="https://dev.mysql.com/doc/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">数据库</td>
+                            <td align="left">PostgreSQL</td>
+                            <td align="left">PostgreSQL官方文档。开源的关系型数据库管理系统，支持SQL。</td>
+                            <td align="left"><a href="https://www.postgresql.org/docs/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">数据库</td>
+                            <td align="left">MongoDB</td>
+                            <td align="left">MongoDB官方文档。面向文档的NoSQL数据库，支持JSON格式。</td>
+                            <td align="left"><a href="https://docs.mongodb.com/manual/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">数据库</td>
+                            <td align="left">SQLite</td>
+                            <td align="left">SQLite官方文档。轻量级的嵌入式关系型数据库管理系统，支持SQL。</td>
+                            <td align="left"><a href="https://www.sqlite.org/docs.html">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">数据库</td>
+                            <td align="left">Redis</td>
+                            <td align="left">Redis官方文档。高性能的键值存储数据库，适用于缓存和消息队列。</td>
+                            <td align="left"><a href="https://redis.io/documentation">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">数据库</td>
+                            <td align="left">Cassandra</td>
+                            <td align="left">Cassandra官方文档。分布式NoSQL数据库，适用于大规模数据存储。</td>
+                            <td align="left"><a href="https://cassandra.apache.org/doc/latest/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">数据库</td>
+                            <td align="left">Couchbase</td>
+                            <td align="left">Couchbase官方文档。分布式NoSQL数据库，支持JSON文档存储。</td>
+                            <td align="left"><a href="https://docs.couchbase.com/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">数据库</td>
+                            <td align="left">InfluxDB</td>
+                            <td align="left">InfluxDB官方文档。时序数据库，适用于大规模数据监控和分析。</td>
+                            <td align="left"><a href="https://docs.influxdata.com/influxdb/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">数据库</td>
+                            <td align="left">Elasticsearch</td>
+                            <td align="left">Elasticsearch官方文档。分布式搜索和分析引擎，基于Lucene。</td>
+                            <td align="left"><a href="https://www.elastic.co/guide/index.html">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">数据库</td>
+                            <td align="left">Neo4j</td>
+                            <td align="left">Neo4j官方文档。图形数据库，适用于高度关联的数据分析。</td>
+                            <td align="left"><a href="https://neo4j.com/docs/">官网</a></td>
+                        </tr>
+                        <!-- ... -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="module">
+                <h2>Web框架</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">类别</th>
+                            <th align="left">资源名（Name）</th>
+                            <th align="left">描述（Description）</th>
+                            <th align="left">链接</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 在此处添加100+条目，包括名称、语料介绍和链接 -->
+                        <tr>
+                            <td align="left">Web框架</td>
+                            <td align="left">Django</td>
+                            <td align="left">Django官方文档。基于Python的Web开发框架，适用于全栈开发。</td>
+                            <td align="left"><a href="https://docs.djangoproject.com/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Web框架</td>
+                            <td align="left">Flask</td>
+                            <td align="left">Flask官方文档。轻量级Python Web框架，适用于小型项目。</td>
+                            <td align="left"><a href="https://flask.palletsprojects.com/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Web框架</td>
+                            <td align="left">Express</td>
+                            <td align="left">Express官方文档。基于Node.js的Web开发框架，适用于后端开发。</td>
+                            <td align="left"><a href="https://expressjs.com/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Web框架</td>
+                            <td align="left">Ruby on Rails</td>
+                            <td align="left">Ruby on Rails官方文档。基于Ruby的Web开发框架，适用于全栈开发。</td>
+                            <td align="left"><a href="https://guides.rubyonrails.org/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Web框架</td>
+                            <td align="left">Ruby on Rails</td>
+                            <td align="left">Ruby on Rails官方文档。基于Ruby的Web开发框架，适用于全栈开发。</td>
+                            <td align="left"><a href="https://guides.rubyonrails.org/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Web框架</td>
+                            <td align="left">Spring</td>
+                            <td align="left">Spring官方文档。基于Java的企业级应用开发框架，适用于后端开发。</td>
+                            <td align="left"><a href="https://spring.io/guides">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Web框架</td>
+                            <td align="left">Vue.js</td>
+                            <td align="left">Vue.js官方文档。轻量级前端框架，用于构建用户界面和单页面应用。</td>
+                            <td align="left"><a href="https://vuejs.org/v2/guide/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Web框架</td>
+                            <td align="left">React</td>
+                            <td align="left">React官方文档。Facebook开源的前端框架，用于构建用户界面。</td>
+                            <td align="left"><a href="https://reactjs.org/docs/getting-started.html">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Web框架</td>
+                            <td align="left">Angular</td>
+                            <td align="left">Angular官方文档。谷歌开源的前端框架，用于构建动态Web应用。</td>
+                            <td align="left"><a href="https://angular.io/docs">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Web框架</td>
+                            <td align="left">ASP.NET</td>
+                            <td align="left">ASP.NET官方文档。基于.NET的Web开发框架，适用于全栈开发。</td>
+                            <td align="left"><a href="https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-6.0">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">Web框架</td>
+                            <td align="left">Laravel</td>
+                            <td align="left">Laravel官方文档。基于PHP的Web开发框架，适用于全栈开发。</td>
+                            <td align="left"><a href="https://laravel.com/docs">官网</a></td>
+                        </tr>
+                        <!-- ... -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="tool-all" id="tools" style="display: none;">
+            <h1>工具库</h1>
+            <div class="module">
+                <h2>云服务</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">类别</th>
+                            <th align="left">资源名（Name）</th>
+                            <th align="left">描述（Description）</th>
+                            <th align="left">链接</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left">云服务</td>
+                            <td align="left">AWS</td>
+                            <td align="left">AWS官方文档。亚马逊的云计算服务，提供计算、存储等资源。</td>
+                            <td align="left"><a href="https://aws.amazon.com/documentation/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">云服务</td>
+                            <td align="left">Azure</td>
+                            <td align="left">Azure官方文档。微软的云计算服务，提供计算、存储等资源。</td>
+                            <td align="left"><a href="https://docs.microsoft.com/en-us/azure/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">云服务</td>
+                            <td align="left">Google Cloud</td>
+                            <td align="left">Google Cloud官方文档。谷歌的云计算服务，提供计算、存储等资源。</td>
+                            <td align="left"><a href="https://cloud.google.com/docs">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">云服务</td>
+                            <td align="left">IBM Cloud</td>
+                            <td align="left">IBM Cloud官方文档。IBM的云计算服务，提供计算、存储等资源。</td>
+                            <td align="left"><a href="https://cloud.ibm.com/docs">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">云服务</td>
+                            <td align="left">Oracle Cloud</td>
+                            <td align="left">Oracle Cloud官方文档。甲骨文的云计算服务，提供计算、存储等资源。</td>
+                            <td align="left"><a href="https://docs.oracle.com/en/cloud/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">云服务</td>
+                            <td align="left">Oracle Cloud</td>
+                            <td align="left">Oracle Cloud官方文档。甲骨文的云计算服务，提供计算、存储等资源。</td>
+                            <td align="left"><a href="https://docs.oracle.com/en/cloud/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">云服务</td>
+                            <td align="left">Alibaba Cloud</td>
+                            <td align="left">Alibaba Cloud官方文档。阿里巴巴的云计算服务，提供计算、存储等资源。</td>
+                            <td align="left"><a href="https://www.alibabacloud.com/help">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">云服务</td>
+                            <td align="left">Tencent Cloud</td>
+                            <td align="left">Tencent Cloud官方文档。腾讯的云计算服务，提供计算、存储等资源。</td>
+                            <td align="left"><a href="https://intl.cloud.tencent.com/document">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">云服务</td>
+                            <td align="left">Baidu Cloud</td>
+                            <td align="left">Baidu Cloud官方文档。百度的云计算服务，提供计算、存储等资源。</td>
+                            <td align="left"><a href="https://cloud.baidu.com/doc/index.html">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">云服务</td>
+                            <td align="left">DigitalOcean</td>
+                            <td align="left">DigitalOcean官方文档。面向开发者的云计算服务，提供简化的虚拟服务器。</td>
+                            <td align="left"><a href="https://www.digitalocean.com/docs/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">云服务</td>
+                            <td align="left">Heroku</td>
+                            <td align="left">Heroku官方文档。云平台即服务（PaaS）提供商，支持多种编程语言。</td>
+                            <td align="left"><a href="https://devcenter.heroku.com/">官网</a></td>
+                        </tr>
+                        <!-- ... -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="module">
+                <h2>工具</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th align="left">类别</th>
+                            <th align="left">资源名（Name）</th>
+                            <th align="left">描述（Description）</th>
+                            <th align="left">链接</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 在此处添加100+条目，包括名称、语料介绍和链接 -->
+                        <tr>
+                            <td align="left">版本控制</td>
+                            <td align="left">Git</td>
+                            <td align="left">Git官方文档。分布式版本控制系统，适用于协同开发。</td>
+                            <td align="left"><a href="https://git-scm.com/doc">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">版本控制</td>
+                            <td align="left">Subversion</td>
+                            <td align="left">Subversion官方文档。集中式版本控制系统，用于代码管理。</td>
+                            <td align="left"><a href="https://svnbook.red-bean.com/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">版本控制</td>
+                            <td align="left">Mercurial</td>
+                            <td align="left">Mercurial官方文档。分布式版本控制系统，适用于协同开发。</td>
+                            <td align="left"><a href="https://www.mercurial-scm.org/guide">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编译器与构建工具</td>
+                            <td align="left">GCC</td>
+                            <td align="left">GCC官方文档。GNU编译器套件，支持C、C++等多种语言。</td>
+                            <td align="left"><a href="https://gcc.gnu.org/onlinedocs/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编译器与构建工具</td>
+                            <td align="left">LLVM</td>
+                            <td align="left">LLVM官方文档。编译器基础设施项目，支持多种编程语言。</td>
+                            <td align="left"><a href="https://llvm.org/docs/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编译器与构建工具</td>
+                            <td align="left">Maven</td>
+                            <td align="left">Maven官方文档。基于Java的项目管理和构建工具。</td>
+                            <td align="left"><a href="https://maven.apache.org/guides/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编译器与构建工具</td>
+                            <td align="left">Gradle</td>
+                            <td align="left">Gradle官方文档。灵活的构建工具，支持多种编程语言。</td>
+                            <td align="left"><a href="https://docs.gradle.org/current/userguide/userguide.html">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编译器与构建工具</td>
+                            <td align="left">Make</td>
+                            <td align="left">Make官方文档。经典的构建工具，用于自动化编译和生成。</td>
+                            <td align="left"><a href="https://www.gnu.org/software/make/manual/make.html">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编译器与构建工具</td>
+                            <td align="left">CMake</td>
+                            <td align="left">CMake官方文档。跨平台构建工具，支持多种编程语言。</td>
+                            <td align="left"><a href="https://cmake.org/documentation/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编译器与构建工具</td>
+                            <td align="left">Webpack</td>
+                            <td align="left">Webpack官方文档。前端资源构建工具，适用于模块化项目。</td>
+                            <td align="left"><a href="https://webpack.js.org/concepts/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编译器与构建工具</td>
+                            <td align="left">Babel</td>
+                            <td align="left">Babel官方文档。JavaScript编译器，用于转换ECMAScript代码。</td>
+                            <td align="left"><a href="https://babeljs.io/docs/en/">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编译器与构建工具</td>
+                            <td align="left">Gulp</td>
+                            <td align="left">Gulp官方文档。基于Node.js的自动化构建工具，用于前端项目。</td>
+                            <td align="left"><a href="https://gulpjs.com/docs/en/getting-started/quick-start">官网</a></td>
+                        </tr>
+                        <tr>
+                            <td align="left">编译器与构建工具</td>
+                            <td align="left">Grunt</td>
+                            <td align="left">Grunt官方文档。基于Node.js的自动化构建工具，用于前端项目。</td>
+                            <td align="left"><a href="https://gruntjs.com/getting-started">官网</a></td>
+                        </tr>
+                        <!-- ... -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
